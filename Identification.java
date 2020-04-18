@@ -1,12 +1,24 @@
 public class Identification {
 
     public static VariableSyntax variableSyntax = new VariableSyntax();
+    public static StructureSyntax structureSyntax = new StructureSyntax();
 
     //Finds out of a line is a variable or not:
     public static boolean isVariable(String line) {
 
         String firstTerm = getTerm(line, 0);
         if (firstTerm.equals(variableSyntax.stringSyntax) || firstTerm.equals(variableSyntax.doubleSyntax) || firstTerm.equals(variableSyntax.intSyntax) || firstTerm.equals(variableSyntax.boolSyntax)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    //Finds out of a line is a structure declaration:
+    public static boolean isStructureDeclaration(String line) {
+
+        String firstTerm = getTerm(line, 0);
+        if (firstTerm.equals(structureSyntax.ifSyntax) || firstTerm.equals(structureSyntax.elseSyntax) || firstTerm.equals(structureSyntax.forSyntax) || firstTerm.equals(structureSyntax.whileSyntax) || firstTerm.equals(structureSyntax.functionSyntax)) {
             return true;
         }
 
