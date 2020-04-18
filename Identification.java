@@ -37,6 +37,12 @@ public class Identification {
         return getTerm(line, 1);
     }
 
+    //Returns the assignment value of a variable:
+    public static String getAssignmentValue(String line) {
+        String[] arr = line.split("=");
+        return arr[1].trim();
+    }
+
     //Returns the nth term of a line, split by spaces:
     public static String getTerm(String line, int n) {
         return line.trim().split(" ")[n];
