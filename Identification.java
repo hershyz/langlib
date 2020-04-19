@@ -59,4 +59,63 @@ public class Identification {
     public static String getTerm(String line, int n) {
         return line.trim().split(" ")[n];
     }
+
+    //Returns the raw text in parenthesis:
+    public static String getRawTextInParenthesis(String line) {
+
+        line = line.trim();
+        String[] arr = line.split("");
+        boolean startRead = false;
+        String text = "";
+
+        int i;
+        for (i = 0; i < arr.length; i++) {
+
+            if (arr[i].equals(")")) {
+                startRead = false;
+            }
+
+            if (startRead) {
+                text = text + arr[i];
+            }
+
+            if (arr[i].equals("(")) {
+                startRead = true;
+            }
+        }
+
+        return text;
+    }
+
+    //Returns raw parameters within parenthesis as an array, parameters must be separated by a comma:
+    public static String[] getParametersAsArray(String line) {
+
+        String rawParameters = getRawTextInParenthesis(line);
+        String[] parameters = rawParameters.split(",");
+
+        int i;
+        for (i = 0; i < parameters.length; i++) {
+            parameters[i] = parameters[i].trim();
+        }
+
+        return parameters;
+    }
+
+    //Remove first and last quotes:
+    public static String removeQuotes(String line) {
+
+        line = line.trim();
+        String[] arr = line.split("");
+        String result = "";
+
+        if (arr[0].equals("\"") && arr[arr.length - 1].equals("\"")) {
+
+            int i;
+            for (i = 1; i < arr.length - 1; i++) {
+                result = result + arr[i];
+            }
+        }
+
+        return result;
+    }
 }
